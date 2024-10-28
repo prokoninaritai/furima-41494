@@ -21,13 +21,13 @@
 
 |Column            |Type      |Options                       |
 |------------------|----------|------------------------------|
-|saler_id          |references|null: false, foreign_key:true |
-|item_name         |string    |null: false                   |
+|user              |references|null: false, foreign_key:true |
+|name              |string    |null: false                   |
 |description       |text      |null: false                   |
 |category_id       |integer   |null: false                   |
 |condition_id      |integer   |null: false                   |
 |delivery_charge_id|integer   |null: false                   |
-|delivery_area_id  |integer   |null: false                   |
+|prefectures_id    |integer   |null: false                   |
 |delivery_days_id  |integer   |null: false                   |
 |price             |integer   |null: false                   |
 
@@ -37,16 +37,17 @@
 
 
 
-## shipping_address
+## shipping_addresses
 
-|Column          |Type      |Options        |
-|----------------|----------|---------------|
-|post_code       |string    |null: false    |
-|prefectures_id  |integer   |null: false    |
-|city            |string    |null: false    |
-|address         |string    |null: false    |
-|building        |string    |null: false    |
-|mobile          |string    |null: false    |
+|Column          |Type      |Options                       |
+|----------------|----------|------------------------------|
+|post_code       |string    |null: false                   |
+|prefectures_id  |integer   |null: false                   |
+|city            |string    |null: false                   |
+|address         |string    |null: false                   |
+|building        |string    |                              |
+|mobile          |string    |null: false                   |
+|order           |references|null: false, foreign_key:true |
 
 ### Association
 - belongs_to :order
@@ -54,11 +55,10 @@
 
 ## orders
 
-|Column              |Type      |Options        |
-|--------------------|----------|---------------|
-|item_id             |integer   |null: false    |
-|buyer_user_id       |integer   |null: false    |
-|chipping_address_id |integer   |null: false    |
+|Column     |Type      |Options                       |
+|-----------|----------|------------------------------|
+|user       |references|null: false, foreign_key:true |
+|item       |references|null: false, foreign_key:true |
 
 ### Association
 - belongs_to :user
