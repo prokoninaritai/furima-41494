@@ -27,8 +27,8 @@
 |category_id       |integer   |null: false                   |
 |condition_id      |integer   |null: false                   |
 |delivery_charge_id|integer   |null: false                   |
-|prefectures_id    |integer   |null: false                   |
-|delivery_days_id  |integer   |null: false                   |
+|prefecture_id     |integer   |null: false                   |
+|delivery_day_id   |integer   |null: false                   |
 |price             |integer   |null: false                   |
 
 ### Association
@@ -42,7 +42,7 @@
 |Column          |Type      |Options                       |
 |----------------|----------|------------------------------|
 |post_code       |string    |null: false                   |
-|prefectures_id  |integer   |null: false                   |
+|prefecture_id   |integer   |null: false                   |
 |city            |string    |null: false                   |
 |address         |string    |null: false                   |
 |building        |string    |                              |
@@ -62,6 +62,6 @@
 
 ### Association
 - belongs_to :user
-- belongs_to :shipping_address
+- has_one :shipping_address
 - belongs_to :item
 
