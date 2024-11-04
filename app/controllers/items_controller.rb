@@ -20,16 +20,18 @@ class ItemsController < ApplicationController
     end
   end
 
-    private
-    def item_params
-      params.require(:item).permit(:image, :name, :description, :category_id, :condition_id, :delivery_charge_id, :prefecture_id, :delivery_day_id, :price ).merge(user_id:current_user.id)
-    end
+  private
 
-    def set_item_dependencies
-      @categories = Category.all
-      @conditions = Condition.all
-      @prefectures = Prefecture.all
-      @delivery_charges = DeliveryCharge.all
-      @delivery_days = DeliveryDay.all
-    end
+  def item_params
+    params.require(:item).permit(:image, :name, :description, :category_id, :condition_id, :delivery_charge_id, :prefecture_id,
+                                 :delivery_day_id, :price).merge(user_id: current_user.id)
+  end
+
+  def set_item_dependencies
+    @categories = Category.all
+    @conditions = Condition.all
+    @prefectures = Prefecture.all
+    @delivery_charges = DeliveryCharge.all
+    @delivery_days = DeliveryDay.all
+  end
 end
