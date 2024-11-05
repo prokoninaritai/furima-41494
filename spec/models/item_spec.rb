@@ -107,7 +107,7 @@ RSpec.describe Item, type: :model do
       it 'priceは小数点があったら保存できない' do
         @item.price = 500.60
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be an integer")
+        expect(@item.errors.full_messages).to include('Price must be an integer')
       end
     end
   end
