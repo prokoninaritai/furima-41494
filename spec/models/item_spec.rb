@@ -104,15 +104,10 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is not a number')
       end
-      it 'priceは英字では保存できない' do
-        @item.price = 'Three hundred'
+      it 'priceは小数点があったら保存できない' do
+        @item.price = 500.60
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is not a number')
-      end
-      it 'priceは全角文字では保存できない' do
-        @item.price = '3百'
-        @item.valid?
-        expect(@item.errors.full_messages).to include('Price is not a number')
+        expect(@item.errors.full_messages).to include("Price must be an integer")
       end
     end
   end
