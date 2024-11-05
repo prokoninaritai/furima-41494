@@ -7,7 +7,6 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    set_item_dependencies
   end
 
   def create
@@ -15,7 +14,6 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to '/'
     else
-      set_item_dependencies
       render :new, status: :unprocessable_entity
     end
   end
@@ -27,11 +25,4 @@ class ItemsController < ApplicationController
                                  :delivery_day_id, :price).merge(user_id: current_user.id)
   end
 
-  def set_item_dependencies
-    @categories = Category.all
-    @conditions = Condition.all
-    @prefectures = Prefecture.all
-    @delivery_charges = DeliveryCharge.all
-    @delivery_days = DeliveryDay.all
-  end
 end
