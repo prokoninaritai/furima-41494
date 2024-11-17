@@ -5,7 +5,6 @@ RSpec.describe OrderShippingAddress, type: :model do
     user = FactoryBot.create(:user)
     item = FactoryBot.create(:item)
     @order_shipping_address = FactoryBot.build(:order_shipping_address, user_id: user.id, item_id: item.id)
-    sleep(1)
   end
 
   describe '購入情報の保存' do
@@ -79,6 +78,11 @@ RSpec.describe OrderShippingAddress, type: :model do
         @order_shipping_address.item_id = nil
         @order_shipping_address.valid?
         expect(@order_shipping_address.errors.full_messages).to include("Item can't be blank")
+      end
+      it "tokenが空では登録できないこと" do
+        @order_shipping_address.token = nil
+        @order_shipping_address.valid?
+        expect(@order_shipping_address.errors.full_messages).to include("Token can't be blank")
       end
     end
   end
