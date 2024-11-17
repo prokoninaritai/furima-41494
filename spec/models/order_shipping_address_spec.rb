@@ -22,12 +22,12 @@ RSpec.describe OrderShippingAddress, type: :model do
       it 'post_codeが空だと保存できないこと' do
         @order_shipping_address.post_code = ''
         @order_shipping_address.valid?
-        expect( @order_shipping_address.errors.full_messages).to include("Post code can't be blank")
+        expect(@order_shipping_address.errors.full_messages).to include("Post code can't be blank")
       end
       it 'post_codeが半角のハイフンを含んだ正しい形式でないと保存できないこと' do
-        @order_shipping_address.post_code = 1234567
+        @order_shipping_address.post_code = 1_234_567
         @order_shipping_address.valid?
-        expect( @order_shipping_address.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
+        expect(@order_shipping_address.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
       end
       it 'prefecture_idを選択していないと保存できないこと' do
         @order_shipping_address.prefecture_id = 1
@@ -52,22 +52,22 @@ RSpec.describe OrderShippingAddress, type: :model do
       it 'mobileが全角数字だと保存できないこと' do
         @order_shipping_address.mobile = '０９０１２３４５６７８'
         @order_shipping_address.valid?
-        expect(@order_shipping_address.errors.full_messages).to include("Mobile must be 10 or 11 digits")
+        expect(@order_shipping_address.errors.full_messages).to include('Mobile must be 10 or 11 digits')
       end
       it 'mobileは10文字未満では保存できないこと' do
         @order_shipping_address.mobile = '090123456'
         @order_shipping_address.valid?
-        expect(@order_shipping_address.errors.full_messages).to include("Mobile must be 10 or 11 digits")
+        expect(@order_shipping_address.errors.full_messages).to include('Mobile must be 10 or 11 digits')
       end
       it 'mobileは11文字を超過すると保存できないこと' do
         @order_shipping_address.mobile = '090123456789'
         @order_shipping_address.valid?
-        expect(@order_shipping_address.errors.full_messages).to include("Mobile must be 10 or 11 digits")
+        expect(@order_shipping_address.errors.full_messages).to include('Mobile must be 10 or 11 digits')
       end
       it 'mobileはハイフンを入れると保存できないこと' do
         @order_shipping_address.mobile = '090-1234-5678'
         @order_shipping_address.valid?
-        expect(@order_shipping_address.errors.full_messages).to include("Mobile must be 10 or 11 digits")
+        expect(@order_shipping_address.errors.full_messages).to include('Mobile must be 10 or 11 digits')
       end
       it 'userが紐ついていないと保存できないこと' do
         @order_shipping_address.user_id = nil
@@ -79,7 +79,7 @@ RSpec.describe OrderShippingAddress, type: :model do
         @order_shipping_address.valid?
         expect(@order_shipping_address.errors.full_messages).to include("Item can't be blank")
       end
-      it "tokenが空では登録できないこと" do
+      it 'tokenが空では登録できないこと' do
         @order_shipping_address.token = nil
         @order_shipping_address.valid?
         expect(@order_shipping_address.errors.full_messages).to include("Token can't be blank")
@@ -87,5 +87,3 @@ RSpec.describe OrderShippingAddress, type: :model do
     end
   end
 end
-
-
