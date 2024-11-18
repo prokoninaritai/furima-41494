@@ -17,7 +17,6 @@ class OrdersController < ApplicationController
       @order_shipping_address.save
       redirect_to '/'
     else
-      puts @order_shipping_address.errors.full_messages
       gon.public_key = ENV['PAYJP_PUBLIC_KEY']
       render :index, status: :unprocessable_entity
     end
