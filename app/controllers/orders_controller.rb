@@ -6,7 +6,6 @@ class OrdersController < ApplicationController
     gon.public_key = ENV['PAYJP_PUBLIC_KEY']
     @order_shipping_address = OrderShippingAddress.new
     return unless @item.user_id == current_user.id || @item.order.present?
-
     redirect_to '/'
   end
 
