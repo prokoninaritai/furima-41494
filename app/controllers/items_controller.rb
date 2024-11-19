@@ -24,7 +24,8 @@ class ItemsController < ApplicationController
 
   def edit
     return if @item.user_id == current_user.id && !@item.order.present?
-     redirect_to '/'
+
+    redirect_to '/'
   end
 
   def update
@@ -48,5 +49,4 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
-
 end
