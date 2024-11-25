@@ -54,7 +54,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'faker'
-  gem 'pry-rails'
 end
 
 group :development do
@@ -86,3 +85,4 @@ gem 'active_hash'
 gem 'pry-rails'
 gem 'payjp'
 gem 'gon'
+gem "aws-sdk-s3", require: false
